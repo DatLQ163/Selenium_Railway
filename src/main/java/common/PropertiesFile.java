@@ -13,7 +13,7 @@ import java.util.Properties;
         //Lấy đường dẫn đến project hiện tại
         static String projectPath = System.getProperty("user.dir") + "/";
         //Tạo đường dẫn đến file configs.properties mặc định
-        private static String propertiesFilePathRoot = "src/main/Resources/config.properties";
+        private static String propertiesFilePathRoot = "src/main/resources/config.properties";
 
         public static void setPropertiesFile() {
             properties = new Properties();

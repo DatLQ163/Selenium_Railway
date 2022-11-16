@@ -34,7 +34,7 @@ public class BookTicketPage {
         return Constant.WEBDRIVER.findElement(ddlTicketAmount);
     }
     private WebElement getBtnBookTicket() { return Constant.WEBDRIVER.findElement(btnBookTicket);}
-    public WebElement getMsgBookSuccessfully() { return Constant.WEBDRIVER.findElement(msgBookSuccessfully);}
+    private WebElement getMsgBookSuccessfully() { return Constant.WEBDRIVER.findElement(msgBookSuccessfully);}
     private WebElement getDgdTicketDepart() {
         return Constant.WEBDRIVER.findElement(dgdTicketDepart);
     }
@@ -50,16 +50,16 @@ public class BookTicketPage {
     private WebElement getDgdTicketAmount() {
         return Constant.WEBDRIVER.findElement(dgdTicketAmount);
     }
-    public WebElement getTitleBookTicketPage(){ return Constant.WEBDRIVER.findElement(titleBookTicketPage);}
+    private WebElement getTitleBookTicketPage(){ return Constant.WEBDRIVER.findElement(titleBookTicketPage);}
 
     // Methods
-    public void fillDataBookTicket(int departDate, String departFrom, String arriveAt, String seatType, String ticketAmount) {
+    public void fillDataBookTicket(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount) {
         Select dropDepartDate = new Select(getDdlDepartDate());
         Select dropDepartFrom = new Select(getDdlDepartFrom());
         Select dropArriveAt = new Select(getDdlArriveAt());
         Select dropSeatType = new Select(getDdlSeatType());
         Select dropTicketAmount = new Select(getDdlTicketAmount());
-        dropDepartDate.selectByIndex(departDate);
+        dropDepartDate.selectByValue(departDate);
         dropDepartFrom.selectByVisibleText(departFrom);
         dropArriveAt.selectByVisibleText(arriveAt);
         dropSeatType.selectByVisibleText(seatType);
@@ -90,5 +90,11 @@ public class BookTicketPage {
         listDataTicket.add(getDgdTicketSeatType().getText());
         listDataTicket.add(getDgdTicketAmount().getText());
         return listDataTicket;
+    }
+    public String getBookSuccessfullyMessage(){
+        return getMsgBookSuccessfully().getText();
+    }
+    public String getBookTicketPageTitle(){
+        return getTitleBookTicketPage().getText();
     }
 }

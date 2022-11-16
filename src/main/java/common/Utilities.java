@@ -28,4 +28,7 @@ public class Utilities {
     public static void open(){
         Constant.WEBDRIVER.navigate().to(Constant.RAILWAY_URL);
     }
+    public static void maximizeBrowser(){
+        Constant.WEBDRIVER.manage().window().maximize();
+    }
 }

@@ -25,12 +25,12 @@ public class RegisterPage extends GeneralPage{
     private WebElement getTxtPassword(){ return Constant.WEBDRIVER.findElement(txtPassword);}
     private WebElement getTxtConfirmPassword(){ return Constant.WEBDRIVER.findElement(txtConfirmPassword);}
     private WebElement getTxtPassport(){ return Constant.WEBDRIVER.findElement(txtPassport);}
-    public WebElement getMsgRegisterSuccessfully(){ return Constant.WEBDRIVER.findElement(msgRegisterSuccessfully);}
-    public WebElement getLblErrormessage(){ return Constant.WEBDRIVER.findElement(errMessage);}
+    private WebElement getMsgRegisterSuccessfully(){ return Constant.WEBDRIVER.findElement(msgRegisterSuccessfully);}
+    private WebElement getError(){ return Constant.WEBDRIVER.findElement(errMessage);}
     private WebElement getBtnRegister(){
         return Constant.WEBDRIVER.findElement(btnRegister);
     }
-    public WebElement getLblValidation(String label){return Constant.WEBDRIVER.findElement(lblValidation(label));}
+    private WebElement getLblValidation(String label){return Constant.WEBDRIVER.findElement(lblValidation(label));}
 
     //Methods
     public void fillDataRegister(String email, String password, String confirmpassword , String passport){
@@ -41,5 +41,14 @@ public class RegisterPage extends GeneralPage{
     }
     public void clickRegister(){
         this.getBtnRegister().click();
+    }
+    public String getRegisterSuccessfullyMessage(){
+        return getMsgRegisterSuccessfully().getText();
+    }
+    public String getErrorMessage(){
+        return getError().getText();
+    }
+    public String getValidationLabel(String label){
+        return getLblValidation(label).getText();
     }
 }
