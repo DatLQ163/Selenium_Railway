@@ -10,7 +10,7 @@ public class ChangePasswordPage extends GeneralPage{
     private final By txtNewPassword = By.xpath("//input[@id='newPassword']");
     private final By txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
     private final By btnChangePassword = By.xpath("//input[@type='submit']");
-
+    private final By msgChangePasswordSuccessfully = By.xpath("//p[@class ='message success']");
     private final By titleChangePasswordPage = By.xpath("//h1[.='Change password']");
 
     // Elements
@@ -30,9 +30,12 @@ public class ChangePasswordPage extends GeneralPage{
 
         return Constant.WEBDRIVER.findElement(btnChangePassword);
     }
-    public WebElement getTitleChangePasswordPage(){
+    private WebElement getTitleChangePasswordPage(){
 
         return Constant.WEBDRIVER.findElement(titleChangePasswordPage);
+    }
+    private WebElement getMsgChangePasswordSuccessfully(){
+        return Constant.WEBDRIVER.findElement(msgChangePasswordSuccessfully);
     }
 
     // Methods
@@ -43,5 +46,11 @@ public class ChangePasswordPage extends GeneralPage{
     }
     public void clickChangePassword(){
         getBtnChangePassword().click();
+    }
+    public String displayChangePasswordSuccessfully(){
+        return getMsgChangePasswordSuccessfully().getText();
+    }
+    public boolean displayChangePasswordTitle(){
+        return getTitleChangePasswordPage().isDisplayed();
     }
 }

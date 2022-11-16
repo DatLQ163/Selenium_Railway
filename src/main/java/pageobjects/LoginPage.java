@@ -26,14 +26,14 @@ public class LoginPage extends GeneralPage{
 
         return Constant.WEBDRIVER.findElement(btnLogin);
     }
-    public WebElement getTitleLoginPage(){
+    private WebElement getTitleLoginPage(){
         return Constant.WEBDRIVER.findElement(titleLoginPage);
     }
-    public WebElement getMsgErrUserName(){
+    private WebElement getMsgErrUserName(){
 
         return Constant.WEBDRIVER.findElement(msgErrUserName);
     }
-    public WebElement getMsgErrorLogin(){
+    private WebElement getMsgErrorLogin(){
         return Constant.WEBDRIVER.findElement(msgErrLogin);
     }
 
@@ -44,5 +44,11 @@ public class LoginPage extends GeneralPage{
     }
     public void clickLogin(){
         getBtnLogin().click();
+    }
+    public String getLoginErrorMessage(){
+        return getMsgErrorLogin().getText();
+    }
+    public String displayLoginPageTitle(){
+        return getTitleLoginPage().getText();
     }
 }

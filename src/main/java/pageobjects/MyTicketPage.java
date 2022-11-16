@@ -44,7 +44,7 @@ public class MyTicketPage {
 
         return Constant.WEBDRIVER.findElement(btnFilter);
     }
-    public WebElement getTitleMyTicketPage(){
+    private WebElement getTitleMyTicketPage(){
 
         return Constant.WEBDRIVER.findElement(titleMyTicketPage);
     }
@@ -69,5 +69,8 @@ public class MyTicketPage {
     }
     public void clickOkAlert(){
         Constant.WEBDRIVER.switchTo().alert().accept();
+    }
+    public boolean displayMyTicketTitle(){
+        return getTitleMyTicketPage().isDisplayed();
     }
 }

@@ -11,10 +11,10 @@ public class GeneralPage {
     private final By lblWelcomeMessage = By.xpath("//div[@class ='account']//strong");
 
     //Elements
-    public WebElement getTabMenu(String tabMenu){
+    private WebElement getTabMenu(String tabMenu){
         return  Constant.WEBDRIVER.findElement(By.xpath(String.format(tabName,tabMenu)));
     }
-    public WebElement getLblWelcomeMessage(){
+    private WebElement getLblWelcomeMessage(){
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
 
@@ -22,7 +22,9 @@ public class GeneralPage {
     public void gotoPage(String tabName){
         getTabMenu(tabName).click();
     }
-    public String getWelcomeMessage(){
-        return this.getLblWelcomeMessage().getText();
+    public String getWelcomeMessage(){return getLblWelcomeMessage().getText();}
+
+    public boolean displayTabMenu(String tabMenu){
+        return getTabMenu(tabMenu).isDisplayed();
     }
 }
