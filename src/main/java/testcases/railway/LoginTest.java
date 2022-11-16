@@ -21,7 +21,7 @@ public class LoginTest extends GeneralTest{
 
     @Test
     public void TC01(){
-        Log.info("TC-01 - User can log into Railway with valid username and password");
+//        Log.info("TC-01 - User can log into Railway with valid username and password");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Click on 'Login' tab");
         homePage.gotoPage("Login");
