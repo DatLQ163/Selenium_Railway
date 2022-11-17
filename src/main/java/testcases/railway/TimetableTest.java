@@ -20,6 +20,8 @@ public class TimetableTest extends GeneralTest{
     TimetablePage timetablePage = new TimetablePage();
     @Test
     public void TC15(){
+        String Depart = "Huế";
+        String Arrive ="Sài Gòn";
         Log.info("TC15-User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Login with a valid account");
@@ -30,15 +32,15 @@ public class TimetableTest extends GeneralTest{
         loginPage.gotoPage("Timetable");
         Log.info("4. Click on 'book ticket' link of the route from 'Huế' to 'Sài Gòn'");
         Utilities.scrollToFindElement();
-        timetablePage.clickBookTicketLink("Huế","Sài Gòn");
+        timetablePage.clickBookTicketLink(Depart,Arrive);
 
         String actualMsg = bookTicketPage.getBookTicketPageTitle();
         String expectedMsg = "Book ticket";
         Assert.assertEquals(actualMsg, expectedMsg, "Test case failed");
 
-        //        list data trip
-        List<String> listDataTrip = timetablePage.getDataChoose("Huế","Sài Gòn");
-        List<String> listDataBooking = timetablePage.getDataBooking();
+        //list data trip
+        List<String> listDataTrip = timetablePage.getDataChoose(Depart,Depart);
+        List<String> listDataBooking = bookTicketPage.getDataBooking();
         for(int i = 0;i<listDataTrip.size();i++){
             Assert.assertEquals(listDataTrip.get(i),listDataBooking.get(i),"test case failed");
         }

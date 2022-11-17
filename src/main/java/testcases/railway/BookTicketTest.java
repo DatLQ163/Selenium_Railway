@@ -29,6 +29,10 @@ public class BookTicketTest extends GeneralTest{
     }
     @Test
     public void TC14(){
+        String DepartFrom = "Sài Gòn";
+        String ArriveAt = "Arrive at";
+        String SeatType ="Soft bed with air conditioner";
+        String TicketAmount ="1";
         Log.info("TC-14 - User can book 1 ticket at a time");
         Log.info("1. Navigate to QA Railway Website");
         homePage.gotoPage("Login");
@@ -42,7 +46,7 @@ public class BookTicketTest extends GeneralTest{
         Log.info("6. Select 'Soft bed with air conditioner' for 'Seat type'");
         Log.info("7. Select '1' for 'Ticket amount'");
         Utilities.scrollToFindElement();
-        bookTicketPage.fillDataBookTicket(Constant.DEPART_DATE,"Sài Gòn","Nha Trang",  "Soft bed with air conditioner", "1" );
+        bookTicketPage.fillDataBookTicket(Constant.DEPART_DATE,DepartFrom,ArriveAt, SeatType, TicketAmount );
         //get list Data Booking
         List<String> listDataBooking = bookTicketPage.getInfoBooking();
         Log.info("8. Click on 'Book ticket' button");

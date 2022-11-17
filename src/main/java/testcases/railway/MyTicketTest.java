@@ -4,6 +4,9 @@ import common.Constant;
 import common.Log;
 import common.PropertiesFile;
 import common.Utilities;
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import pageobjects.BookTicketPage;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
@@ -31,7 +34,8 @@ public class MyTicketTest extends GeneralTest{
 //        Assert.assertEquals(actualMsg, expectedMsg, "Welcome message  is not displayed");
     }
     @Test
-    public void TC16(){
+    public void TC16 () throws InterruptedException{
+        String rowNumber ="5";
         Log.info("TC-16 - User can cancel a ticket");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Login with a valid account");
@@ -44,11 +48,21 @@ public class MyTicketTest extends GeneralTest{
         bookTicketPage.fillDataBookTicket(Constant.DEPART_DATE,"Sài Gòn","Nha Trang",  "Soft bed with air conditioner", "1" );
         bookTicketPage.clickBookTicket();
         Log.info("4. Click on 'My ticket' tab");
-        loginPage.gotoPage("My ticket");
+        bookTicketPage.gotoPage("My ticket");
+
+        //determined row will be canceled
+        String cancelID = myTicketPage.getCancelId(rowNumber);
+        WebElement rowSelected = myTicketPage.selectRowWillBeCanceled(cancelID);
+
         Log.info("5. Click on 'Cancel' button of ticket which user want to cancel.");
-        Utilities.scrollToFindElement();
-        myTicketPage.cancelTicket("3");
+        Utilities.scrollByJavaScript();
+        myTicketPage.cancelTicket(rowNumber);
         Log.info("6. Click on 'OK' button on Confirmation message 'Are you sure?'");
         myTicketPage.clickOkAlert();
+
+        //check display row be canceled
+        Boolean actualResult = myTicketPage.checkRowBeCanceled(rowSelected);
+        Boolean expectedResult = true;
+        Assert.assertEquals(actualResult, expectedResult,"testcase failed");
     }
 }

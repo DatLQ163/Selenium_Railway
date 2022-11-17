@@ -2,13 +2,20 @@ package pageobjects;
 
 import common.Constant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class MyTicketPage {
     // Locators
-    private String btnCancelWithRowNumber = "//td[.='%s']/..//input[@value='Delete' or @value = 'Cancel']";
-    private final By row = By.xpath("//table[@class = 'MyTable']//following::tr[@class!='TableSmallHeader']");
+//    private String btnCancelWithRow = "//input[@onclick ='DeleteTicket(%s);']";
+    private String btnCancelWithRow = "//td[.='%s']/..//input[@value='Delete' or @value = 'Cancel']";
+    private String rowSelected = "//input[@onclick ='%s']/../..";
     private final By ddlDepart = By.xpath("//div[@class = 'Filter']//select[@name ='FilterDpStation']");
     private final By ddlArrive = By.xpath("//div[@class = 'Filter']//select[@name ='FilterArStation']");
     private final By ddlDate = By.xpath("//div[@class = 'Filter']//input[@name ='FilterDpDate']");
@@ -18,11 +25,11 @@ public class MyTicketPage {
 
     // Elements
     public WebElement getBtnCancelWithRow(String rowNumber){
-        return Constant.WEBDRIVER.findElement(By.xpath(String.format(btnCancelWithRowNumber,rowNumber)));
+        return Constant.WEBDRIVER.findElement(By.xpath(String.format(btnCancelWithRow,rowNumber)));
     }
-    private WebElement getRow() {
+    private WebElement getRowSelected(String cancelId) {
 
-        return Constant.WEBDRIVER.findElement(row);
+        return Constant.WEBDRIVER.findElement(By.xpath(String.format(rowSelected,cancelId)));
     }
     private WebElement getDdlDepart(){
 
@@ -51,7 +58,6 @@ public class MyTicketPage {
 
     // Methods
     // Filter
-
     public void fillDataFilter(String date){
         Select dropFilterDepart = new Select(getDdlDepart());
         Select dropFilterArrive = new Select(getDdlArrive());
@@ -64,13 +70,35 @@ public class MyTicketPage {
     public void clickFilter(){
         getBtnFilter().click();
     }
+
+    //Cancel
     public void cancelTicket(String rowNumber){
         getBtnCancelWithRow(rowNumber).click();
     }
     public void clickOkAlert(){
         Constant.WEBDRIVER.switchTo().alert().accept();
     }
+    public String getCancelId(String rowNumber){
+        return getBtnCancelWithRow(rowNumber).getAttribute("onclick");
+    }
+    public WebElement selectRowWillBeCanceled(String cancelId){
+        return getRowSelected(cancelId);
+    }
+    public Boolean checkRowBeCanceled (WebElement element){
+            try{
+                element.isDisplayed();
+                return false;
+            }
+            catch(Exception e){
+                return true;
+            }
+    }
     public boolean displayMyTicketTitle(){
         return getTitleMyTicketPage().isDisplayed();
     }
+//    public void waitForVisible(){
+//    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, 10);
+//    WebElement element = wait.until(
+//            ExpectedConditions.visibilityOfElementLocated(By.id("someid")));
+//    }
 }
