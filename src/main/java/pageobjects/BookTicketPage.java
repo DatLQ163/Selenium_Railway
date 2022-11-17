@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookTicketPage {
+public class BookTicketPage extends GeneralPage{
     // Locators
     private final By ddlDepartDate = By.xpath("//select[@name ='Date']");
     private final By ddlDepartFrom = By.xpath("//select[@name ='DepartStation']");
@@ -78,6 +78,14 @@ public class BookTicketPage {
         listInfoBooking.add(dropSeatType.getFirstSelectedOption().getText());
         listInfoBooking.add(dropTicketAmount.getFirstSelectedOption().getText());
         return listInfoBooking;
+    }
+    public List<String> getDataBooking(){
+        List<String> listDataBooking = new ArrayList<>();
+        Select dropDepartFrom = new Select(getDdlDepartFrom());
+        Select dropArriveAt = new Select(getDdlArriveAt());
+        listDataBooking.add(dropDepartFrom.getFirstSelectedOption().getText());
+        listDataBooking.add(dropArriveAt.getFirstSelectedOption().getText());
+        return listDataBooking;
     }
     public void clickBookTicket(){
         getBtnBookTicket().click();

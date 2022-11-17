@@ -91,30 +91,30 @@ public class LoginTest extends GeneralTest{
         loginPage.clickLogin();
 
         //display MyTicket tab
-        boolean actualMyTickeTabtDisplay = homePage.displayTabMenu("My ticket");
+        boolean actualMyTicketTabDisplay = homePage.displayTabMenu("My ticket");
         boolean expectedMyTicketTabDisplay = true;
-        Assert.assertEquals(actualMyTickeTabtDisplay, expectedMyTicketTabDisplay, "test case failed");
+        Assert.assertEquals(actualMyTicketTabDisplay, expectedMyTicketTabDisplay, "test case failed");
 
         //display ChangePassword tab
-        boolean actualChangePasswordTabtDisplay = homePage.displayTabMenu("Change password");
+        boolean actualChangePasswordTabDisplay = homePage.displayTabMenu("Change password");
         boolean expectedChangePasswordTabDisplay = true;
-        Assert.assertEquals(actualChangePasswordTabtDisplay, expectedChangePasswordTabDisplay, "test case failed");
+        Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay, "test case failed");
 
         //display Logout tab
-        boolean actualLogoutTabtDisplay = homePage.displayTabMenu("Log out");
+        boolean actualLogoutTabDisplay = homePage.displayTabMenu("Log out");
         boolean expectedLogoutTabDisplay = true;
-        Assert.assertEquals(actualLogoutTabtDisplay, expectedLogoutTabDisplay, "test case failed");
+        Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay, "test case failed");
 
         //go to MyTicket page
         loginPage.gotoPage("My ticket");
         boolean actualMyTicketPageResult = myTicketPage.displayMyTicketTitle();
-        boolean expectedMyTickePagetResult = true;
-        Assert.assertEquals(expectedMyTickePagetResult,actualMyTicketPageResult,"test case failed");
+        boolean expectedMyTicketPageResult = true;
+        Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult,"test case failed");
 
         //go to ChangePassword page
         loginPage.gotoPage("Change password");
-        boolean actuaChangePasswordPagelResult = changePasswordPage.displayChangePasswordTitle();
+        boolean actualChangePasswordPageResult = changePasswordPage.displayChangePasswordTitle();
         boolean expectedChangePasswordPageResult = true;
-        Assert.assertEquals(actuaChangePasswordPagelResult, expectedChangePasswordPageResult, "test case failed");
+        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult, "test case failed");
     }
 }
