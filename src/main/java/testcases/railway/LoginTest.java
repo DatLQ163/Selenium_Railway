@@ -23,63 +23,59 @@ public class LoginTest extends GeneralTest{
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Click on 'Login' tab");
         homePage.gotoPage("Login");
-        Log.info("3. Enter valid Email and Password");
+        Log.info("3. Login with valid Email and Password");
         Utilities.scrollByJavaScript();
-        loginPage.fillDataLogin(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        Log.info("4. Click on 'Login' button");
-        loginPage.clickLogin();
+        loginPage.login(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
 
         String actualMsg = loginPage.getWelcomeMessage();
         String expectedMsg = "Welcome " + Constant.USERNAME;
-        Assert.assertEquals(actualMsg, expectedMsg, "test case failed");
+        Assert.assertEquals(actualMsg, expectedMsg);
     }
+
     @Test
     public void TC02(){
         System.out.println("TC-02 - User can't login with blank 'Username' textbox");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Click on 'Login' tab");
         homePage.gotoPage("Login");
-        Log.info("3. User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
-        loginPage.fillDataLogin("", PropertiesFile.getPropValue("password"));
-        Log.info("4. Click on 'Login' button");
-        loginPage.clickLogin();
+        Log.info("3. User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox then click login button ");
+        loginPage.login("", PropertiesFile.getPropValue("password"));
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
-        Assert.assertEquals(actualMsg, expectedMsg, "test case failed");
+        Assert.assertEquals(actualMsg, expectedMsg);
     }
+
     @Test
     public void TC03(){
         Log.info("TC-03 - User cannot log into Railway with invalid password");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Click on 'Login' tab");
         homePage.gotoPage("Login");
-        Log.info("3. Enter valid Email and invalid Password");
-        loginPage.fillDataLogin(PropertiesFile.getPropValue("username"), Constant.INVALID_PASSWORD);
-        Log.info("4. Click on 'Login' button");
-        loginPage.clickLogin();
+        Log.info("3. Enter valid Email and invalid Password then click login button");
+        loginPage.login(PropertiesFile.getPropValue("username"), Constant.INVALID_PASSWORD);
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "Invalid username or password. Please try again.";
-        Assert.assertEquals(actualMsg, expectedMsg, "test case failed");
+        Assert.assertEquals(actualMsg, expectedMsg);
     }
+
     @Test
     public void TC05(){
         Log.info("TC-05 - System shows message when user enters wrong password several times");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Click on 'Login' tab");
         homePage.gotoPage("Login");
-        Log.info("3. Enter valid information into 'Username' textbox except 'Password' textbox.");
-        Log.info("4. Click on 'Login' button");
-        Log.info("5. Repeat step 3 three more times.");
+        Log.info("3. Enter valid information into 'Username' textbox except 'Password' textbox then click login.");
+        Log.info("4. Repeat step 3 three more times.");
         for(int i = 0;i <= 6; i++) {
-            loginPage.fillDataLogin(PropertiesFile.getPropValue("username"), "");
-            loginPage.clickLogin();
+            loginPage.login(PropertiesFile.getPropValue("username"), "");
         }
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
-        Assert.assertEquals(actualMsg, expectedMsg, "test case failed");
+        Assert.assertEquals(actualMsg, expectedMsg);
     }
+
     @Test
     public void TC06(){
         Log.info("TC-06 - Additional pages display once user logged in");
@@ -87,8 +83,7 @@ public class LoginTest extends GeneralTest{
         Log.info("2. Click on 'Login' tab");
         homePage.gotoPage("Login");
         Log.info("3. Login with valid account");
-        loginPage.fillDataLogin(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        loginPage.clickLogin();
+        loginPage.login(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
 
         //display MyTicket tab
         boolean actualMyTicketTabDisplay = homePage.displayTabMenu("My ticket");
@@ -98,23 +93,23 @@ public class LoginTest extends GeneralTest{
         //display ChangePassword tab
         boolean actualChangePasswordTabDisplay = homePage.displayTabMenu("Change password");
         boolean expectedChangePasswordTabDisplay = true;
-        Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay, "test case failed");
+        Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay);
 
         //display Logout tab
         boolean actualLogoutTabDisplay = homePage.displayTabMenu("Log out");
         boolean expectedLogoutTabDisplay = true;
-        Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay, "test case failed");
+        Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay);
 
         //go to MyTicket page
         loginPage.gotoPage("My ticket");
         boolean actualMyTicketPageResult = myTicketPage.displayMyTicketTitle();
         boolean expectedMyTicketPageResult = true;
-        Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult,"test case failed");
+        Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult);
 
         //go to ChangePassword page
         loginPage.gotoPage("Change password");
-        boolean actualChangePasswordPageResult = changePasswordPage.displayChangePasswordTitle();
+        boolean actualChangePasswordPageResult = changePasswordPage.displayChangePasswordPageTitle();
         boolean expectedChangePasswordPageResult = true;
-        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult, "test case failed");
+        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult);
     }
 }

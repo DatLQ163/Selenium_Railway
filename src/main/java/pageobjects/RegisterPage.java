@@ -1,6 +1,7 @@
 package pageobjects;
 
 import common.Constant;
+import common.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,44 +12,72 @@ public class RegisterPage extends GeneralPage{
     private final By txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
     private final By txtPassport = By.xpath("//input[@id='pid']");
     private final By btnRegister = By.xpath("//input[@type='submit']");
-    private final By errMessage = By.xpath("//p[@class ='message error']");
-    private final By msgRegisterSuccessfully = By.xpath("//div[@id='content']/p");
-    private By lblValidation(String label){
-      return By.xpath("//label[@class = 'validation-error'][@for ='"+label+"']");
+    private final By lblErrMessage = By.xpath("//p[@class='message error']");
+    private final By lblRegisterSuccessfullyMessage = By.xpath("//div[@id='content']/p");
+    private By lblValidationMessage(String label){
+      return By.xpath("//label[@class='validation-error'][@for='"+label+"']");
     }
 
     // Elements
     private WebElement getTxtEmail(){
-
         return Constant.WEBDRIVER.findElement(txtEmail);
     }
-    private WebElement getTxtPassword(){ return Constant.WEBDRIVER.findElement(txtPassword);}
-    private WebElement getTxtConfirmPassword(){ return Constant.WEBDRIVER.findElement(txtConfirmPassword);}
-    private WebElement getTxtPassport(){ return Constant.WEBDRIVER.findElement(txtPassport);}
-    private WebElement getMsgRegisterSuccessfully(){ return Constant.WEBDRIVER.findElement(msgRegisterSuccessfully);}
-    private WebElement getError(){ return Constant.WEBDRIVER.findElement(errMessage);}
+
+    private WebElement getTxtPassword(){
+        return Constant.WEBDRIVER.findElement(txtPassword);
+    }
+
+    private WebElement getTxtConfirmPassword(){
+        return Constant.WEBDRIVER.findElement(txtConfirmPassword);
+    }
+
+    private WebElement getTxtPassport(){
+        return Constant.WEBDRIVER.findElement(txtPassport);
+    }
+
+    private WebElement getLblRegisterSuccessfullyMessage(){
+        return Constant.WEBDRIVER.findElement(lblRegisterSuccessfullyMessage);
+    }
+
+    private WebElement getLblErrorMessage(){
+        return Constant.WEBDRIVER.findElement(lblErrMessage);
+    }
+
     private WebElement getBtnRegister(){
         return Constant.WEBDRIVER.findElement(btnRegister);
     }
-    private WebElement getLblValidation(String label){return Constant.WEBDRIVER.findElement(lblValidation(label));}
+
+    private WebElement getLblValidationMessage(String label){
+        return Constant.WEBDRIVER.findElement(lblValidationMessage(label));
+    }
 
     //Methods
-    public void fillDataRegister(String email, String password, String confirmpassword , String passport){
+    public void fillDataRegister(String email, String password, String confirmPassword , String passport){
+        Utilities.scrollToFindElement(getLink());
         this.getTxtEmail().sendKeys(email);
         this.getTxtPassword().sendKeys(password);
-        this.getTxtConfirmPassword().sendKeys(confirmpassword);
+        this.getTxtConfirmPassword().sendKeys(confirmPassword);
         this.getTxtPassport().sendKeys(passport);
     }
+
     public void clickRegister(){
         this.getBtnRegister().click();
     }
+
+    public void register(String email, String password, String confirmPassword, String passport){
+        fillDataRegister( email, password, confirmPassword, passport);
+        clickRegister();
+    }
+
     public String getRegisterSuccessfullyMessage(){
-        return getMsgRegisterSuccessfully().getText();
+        return getLblRegisterSuccessfullyMessage().getText();
     }
-    public String getErrorMessage(){
-        return getError().getText();
+
+    public String displayErrorMessage(){
+        return getLblErrorMessage().getText();
     }
-    public String getValidationLabel(String label){
-        return getLblValidation(label).getText();
+
+    public String displayValidationMessage(String label){
+        return getLblValidationMessage(label).getText();
     }
 }
