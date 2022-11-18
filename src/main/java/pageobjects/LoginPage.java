@@ -9,32 +9,33 @@ public class LoginPage extends GeneralPage{
     private final By txtUsername = By.id("username");
     private final By txtPassword = By.id("password");
     private final By btnLogin = By.xpath("//input[@type='submit']");
-    private final By titleLoginPage = By.xpath("//h1[.='Login Page']");
-    private final By msgErrLogin = By.xpath("//p[@class = 'message error LoginForm']");
-    private final By msgErrUserName = By.xpath("//label[@class ='validation-error'][contains(text(),'You must specify a username')]");
+    private final By lblLoginPageTitle = By.xpath("//h1[.='Login Page']");
+    private final By lblErrLoginMessage = By.xpath("//p[@class='message error LoginForm']");
+    private final By lblErrUserNameMessage = By.xpath("//label[@class='validation-error'][contains(text(),'You must specify a username')]");
 
     // Elements
     private WebElement getTxtUsername(){
-
         return Constant.WEBDRIVER.findElement(txtUsername);
     }
-    private WebElement getTxtPassword(){
 
+    private WebElement getTxtPassword(){
         return Constant.WEBDRIVER.findElement(txtPassword);
     }
-    private WebElement getBtnLogin(){
 
+    private WebElement getBtnLogin(){
         return Constant.WEBDRIVER.findElement(btnLogin);
     }
-    private WebElement getTitleLoginPage(){
-        return Constant.WEBDRIVER.findElement(titleLoginPage);
-    }
-    private WebElement getMsgErrUserName(){
 
-        return Constant.WEBDRIVER.findElement(msgErrUserName);
+    private WebElement getLblLoginPageTitle(){
+        return Constant.WEBDRIVER.findElement(lblLoginPageTitle);
     }
+
+    private WebElement getLblErrUserNameMessage(){
+        return Constant.WEBDRIVER.findElement(lblErrUserNameMessage);
+    }
+
     private WebElement getMsgErrorLogin(){
-        return Constant.WEBDRIVER.findElement(msgErrLogin);
+        return Constant.WEBDRIVER.findElement(lblErrLoginMessage);
     }
 
     // Method
@@ -42,13 +43,21 @@ public class LoginPage extends GeneralPage{
         getTxtUsername().sendKeys(username);
         getTxtPassword().sendKeys(password);
     }
+
     public void clickLogin(){
         getBtnLogin().click();
     }
+
+    public void login(String username, String password){
+        fillDataLogin(username, password);
+        clickLogin();
+    }
+
     public String getLoginErrorMessage(){
         return getMsgErrorLogin().getText();
     }
+
     public String displayLoginPageTitle(){
-        return getTitleLoginPage().getText();
+        return getLblLoginPageTitle().getText();
     }
 }

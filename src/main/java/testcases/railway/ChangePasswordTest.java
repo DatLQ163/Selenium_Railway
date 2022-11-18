@@ -3,7 +3,6 @@ package testcases.railway;
 import common.Constant;
 import common.Log;
 import common.PropertiesFile;
-import common.Utilities;
 import org.testng.Assert;
 import pageobjects.ChangePasswordPage;
 import pageobjects.HomePage;
@@ -14,6 +13,7 @@ public class ChangePasswordTest extends GeneralTest{
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
+
     @Test
     public void TC09(){
         String testNewPass = Constant.PASSWORD + (int)(Math.random() * 10);
@@ -25,7 +25,6 @@ public class ChangePasswordTest extends GeneralTest{
         loginPage.clickLogin();
         Log.info("3. Click on 'Change Password' tab");
         loginPage.gotoPage("Change password");
-        Utilities.scrollToFindElement();
         Log.info("4. Enter valid value into all fields.");
         changePasswordPage.fillDataChangePassword(PropertiesFile.getPropValue("password"), testNewPass, testNewPass);
         Log.info("5. Click on 'Change Password' button");
@@ -33,8 +32,8 @@ public class ChangePasswordTest extends GeneralTest{
         //set new password to config.properties file
         PropertiesFile.setPropValue("password", testNewPass);
 
-        String actualMsg = changePasswordPage.displayChangePasswordSuccessfully();
+        String actualMsg = changePasswordPage.displayChangePasswordSuccessfullyMessage();
         String expectedMsg = "Your password has been updated!";
-        Assert.assertEquals(actualMsg,expectedMsg,"test case failed");
+        Assert.assertEquals(actualMsg,expectedMsg);
     }
 }

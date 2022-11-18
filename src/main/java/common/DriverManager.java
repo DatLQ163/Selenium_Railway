@@ -3,10 +3,8 @@ package common;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 
-public class DriverBrowser {
+public class DriverManager {
     public static void chooseBrowser(String browser) {
         browser.equalsIgnoreCase(browser);
         switch (browser) {
@@ -25,5 +23,10 @@ public class DriverBrowser {
             default:
                 System.out.println("no browser type be found");
         }
+        Constant.WEBDRIVER.navigate().to(Constant.RAILWAY_URL);
+    }
+
+    public static void maximizeBrowser(){
+        Constant.WEBDRIVER.manage().window().maximize();
     }
 }

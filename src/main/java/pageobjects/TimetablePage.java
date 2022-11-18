@@ -16,15 +16,14 @@ public class TimetablePage extends GeneralPage{
 
     // Elements
     private WebElement getRowTicketInfo(){
-
         return Constant.WEBDRIVER.findElement(rowTicketInfo);
     }
-    private WebElement getLnkCheckPrice(String depart, String arrive){
 
+    private WebElement getLnkCheckPrice(String depart, String arrive){
         return Constant.WEBDRIVER.findElement(By.xpath(String.format(lnkCheckPrice,depart,arrive)));
     }
-    private WebElement getLnkBookTicket(String depart, String arrive){
 
+    private WebElement getLnkBookTicket(String depart, String arrive){
         return Constant.WEBDRIVER.findElement(By.xpath(String.format(lnkBookTicket,depart,arrive)));
     }
 
@@ -32,9 +31,11 @@ public class TimetablePage extends GeneralPage{
     public void clickBookTicketLink(String depart, String arrive){
         getLnkBookTicket(depart,arrive).click();
     }
+
     public void clickCheckPriceLink(String depart, String arrive){
         getLnkCheckPrice(depart,arrive).click();
     }
+
     public List<String> getDataChoose(String depart, String arrive){
         List<String> listDataChoose = new ArrayList<>();
         listDataChoose.add(depart);
