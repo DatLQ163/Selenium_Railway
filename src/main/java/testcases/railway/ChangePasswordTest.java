@@ -25,10 +25,8 @@ public class ChangePasswordTest extends GeneralTest{
         loginPage.clickLogin();
         Log.info("3. Click on 'Change Password' tab");
         loginPage.gotoPage("Change password");
-        Log.info("4. Enter valid value into all fields.");
-        changePasswordPage.fillDataChangePassword(PropertiesFile.getPropValue("password"), testNewPass, testNewPass);
-        Log.info("5. Click on 'Change Password' button");
-        changePasswordPage.clickChangePassword();
+        Log.info("4. Enter valid value into all fields then click on 'Change Password' button.");
+        changePasswordPage.changePassword(PropertiesFile.getPropValue("password"), testNewPass, testNewPass);
         //set new password to config.properties file
         PropertiesFile.setPropValue("password", testNewPass);
 

@@ -37,7 +37,7 @@ public class TimetableTest extends GeneralTest{
         Assert.assertEquals(actualMsg, expectedMsg);
 
         //list data trip
-        List<String> listDataTrip = timetablePage.getDataChoose(Depart,Depart);
+        List<String> listDataTrip = timetablePage.getDataChoose(Depart,Arrive);
         List<String> listDataBooking = bookTicketPage.getDataDisplay();
         for(int i = 0;i<listDataTrip.size();i++){
             Assert.assertEquals(listDataTrip.get(i),listDataBooking.get(i));
