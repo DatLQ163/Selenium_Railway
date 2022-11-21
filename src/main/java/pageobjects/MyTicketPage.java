@@ -28,6 +28,7 @@ public class MyTicketPage extends GeneralPage{
     private WebElement getDdlDepart(){
         return Constant.WEBDRIVER.findElement(ddlDepart);
     }
+
     private WebElement getDdlArrive(){
         return Constant.WEBDRIVER.findElement(ddlArrive);
     }
