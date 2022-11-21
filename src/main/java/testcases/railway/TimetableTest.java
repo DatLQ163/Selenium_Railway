@@ -34,13 +34,13 @@ public class TimetableTest extends GeneralTest{
 
         String actualMsg = bookTicketPage.getBookTicketPageTitle();
         String expectedMsg = "Book ticket";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg,"can not navigate to 'Book ticket' page ");
 
         //list data trip
         List<String> listDataTrip = timetablePage.getDataChoose(Depart,Arrive);
         List<String> listDataBooking = bookTicketPage.getDataDisplay();
         for(int i = 0;i<listDataTrip.size();i++){
-            Assert.assertEquals(listDataTrip.get(i),listDataBooking.get(i));
+            Assert.assertEquals(listDataTrip.get(i),listDataBooking.get(i),"''Book ticket' page is loaded with incorrect 'Depart from' and 'Arrive at' values.");
         }
     }
 }

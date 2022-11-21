@@ -27,7 +27,7 @@ public class MyTicketTest extends GeneralTest{
         loginPage.login(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
         Log.info("3. Book a ticket");
         loginPage.gotoPage("Book ticket");
-        bookTicketPage.bookTicket(DEPART_DATE,"Sài Gòn","Nha Trang",  "Soft bed with air conditioner", "1" );
+        bookTicketPage.bookTicket(DEPART_DATE,"Sài Gòn","Nha Trang","Soft bed with air conditioner", "1" );
         Log.info("4. Click on 'My ticket' tab");
         bookTicketPage.gotoPage("My ticket");
 
@@ -43,6 +43,6 @@ public class MyTicketTest extends GeneralTest{
         //check display row be canceled
         Boolean actualResult = myTicketPage.checkRowBeCanceled(rowSelected);
         Boolean expectedResult = true;
-        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(actualResult, expectedResult, "User can not cancel a ticket");
     }
 }

@@ -29,7 +29,7 @@ public class LoginTest extends GeneralTest{
 
         String actualMsg = loginPage.getWelcomeMessage();
         String expectedMsg = "Welcome " + Constant.USERNAME;
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg,"User can not log into Railway with valid username and password");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class LoginTest extends GeneralTest{
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg," blank 'Username' textbox is accepted");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class LoginTest extends GeneralTest{
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "Invalid username or password. Please try again.";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg,"invalid password is accepted");
     }
 
     @Test
@@ -73,7 +73,7 @@ public class LoginTest extends GeneralTest{
         }
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg,"System do not show message when user enters wrong password several times" );
     }
 
     @Test
@@ -88,28 +88,28 @@ public class LoginTest extends GeneralTest{
         //display MyTicket tab
         boolean actualMyTicketTabDisplay = homePage.displayTabMenu("My ticket");
         boolean expectedMyTicketTabDisplay = true;
-        Assert.assertEquals(actualMyTicketTabDisplay, expectedMyTicketTabDisplay, "test case failed");
+        Assert.assertEquals(actualMyTicketTabDisplay, expectedMyTicketTabDisplay, "MyTicket tab do not display");
 
         //display ChangePassword tab
         boolean actualChangePasswordTabDisplay = homePage.displayTabMenu("Change password");
         boolean expectedChangePasswordTabDisplay = true;
-        Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay);
+        Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay,"ChangPassword tab do not display");
 
         //display Logout tab
         boolean actualLogoutTabDisplay = homePage.displayTabMenu("Log out");
         boolean expectedLogoutTabDisplay = true;
-        Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay);
+        Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay,"Logout tab do not display");
 
         //go to MyTicket page
         loginPage.gotoPage("My ticket");
         boolean actualMyTicketPageResult = myTicketPage.displayMyTicketTitle();
         boolean expectedMyTicketPageResult = true;
-        Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult);
+        Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult,"can not go to MyTicket page");
 
         //go to ChangePassword page
         loginPage.gotoPage("Change password");
         boolean actualChangePasswordPageResult = changePasswordPage.displayChangePasswordPageTitle();
         boolean expectedChangePasswordPageResult = true;
-        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult);
+        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult,"can not dot to Change password page");
     }
 }

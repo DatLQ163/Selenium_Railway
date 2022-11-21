@@ -17,11 +17,11 @@ public class BookTicketPage extends GeneralPage{
     private final By ddlTicketAmount = By.xpath("//select[@name='TicketAmount']");
     private final By btnBookTicket = By.xpath("//input[@type='submit']");
     private final By lblBookSuccessfullyMessage = By.xpath("//div/h1");
-    private final By dgdTicketDepart = By.xpath("//table//td[count(//th[.='Depart Station']/preceding-sibling::th)+1]");
-    private final By dgdTicketArrive = By.xpath("//table//td[count(//th[.='Arrive Station']/preceding-sibling::th)+1]");
-    private final By dgdTicketSeatType = By.xpath("//table//td[count(//th[.='Seat Type']/preceding-sibling::th)+1]");
-    private final By dgdTicketDepartDate = By.xpath("//table//td[count(//th[.='Depart Date']/preceding-sibling::th)+1]");
-    private final By dgdTicketAmount = By.xpath("//table//td[count(//th[.='Amount']/preceding-sibling::th)+1]");
+    private final By lblTicketDepartData = By.xpath("//table//td[count(//th[.='Depart Station']/preceding-sibling::th)+1]");
+    private final By lblTicketArriveData = By.xpath("//table//td[count(//th[.='Arrive Station']/preceding-sibling::th)+1]");
+    private final By lblTicketSeatTypeData = By.xpath("//table//td[count(//th[.='Seat Type']/preceding-sibling::th)+1]");
+    private final By lblTicketDepartDateData = By.xpath("//table//td[count(//th[.='Depart Date']/preceding-sibling::th)+1]");
+    private final By lblTicketAmountData = By.xpath("//table//td[count(//th[.='Amount']/preceding-sibling::th)+1]");
     private final By lblBookTicketPageTitle = By.xpath("//h1[.='Book ticket']");
 
     // Elements
@@ -53,24 +53,24 @@ public class BookTicketPage extends GeneralPage{
         return Constant.WEBDRIVER.findElement(lblBookSuccessfullyMessage);
     }
 
-    private WebElement getDgdTicketDepart() {
-        return Constant.WEBDRIVER.findElement(dgdTicketDepart);
+    private WebElement getLblTicketDepartData() {
+        return Constant.WEBDRIVER.findElement(lblTicketDepartData);
     }
 
-    private WebElement getDgdTicketArrive() {
-        return Constant.WEBDRIVER.findElement(dgdTicketArrive);
+    private WebElement getLblTicketArriveData() {
+        return Constant.WEBDRIVER.findElement(lblTicketArriveData);
     }
 
-    private WebElement getDgdTicketSeatType() {
-        return Constant.WEBDRIVER.findElement(dgdTicketSeatType);
+    private WebElement getLblTicketSeatTypeData() {
+        return Constant.WEBDRIVER.findElement(lblTicketSeatTypeData);
     }
 
-    private WebElement getDgdTicketDepartDate() {
-        return Constant.WEBDRIVER.findElement(dgdTicketDepartDate);
+    private WebElement getLblTicketDepartDateData() {
+        return Constant.WEBDRIVER.findElement(lblTicketDepartDateData);
     }
 
-    private WebElement getDgdTicketAmount() {
-        return Constant.WEBDRIVER.findElement(dgdTicketAmount);
+    private WebElement getLblTicketAmountData() {
+        return Constant.WEBDRIVER.findElement(lblTicketAmountData);
     }
 
     private WebElement getLblBookTicketPageTitle(){
@@ -127,11 +127,11 @@ public class BookTicketPage extends GeneralPage{
 
     public List<String> getInfoTicket(){
         List<String> listDataTicket = new ArrayList<>();
-        listDataTicket.add(getDgdTicketDepartDate().getText());
-        listDataTicket.add(getDgdTicketDepart().getText());
-        listDataTicket.add(getDgdTicketArrive().getText());
-        listDataTicket.add(getDgdTicketSeatType().getText());
-        listDataTicket.add(getDgdTicketAmount().getText());
+        listDataTicket.add(getLblTicketDepartDateData().getText());
+        listDataTicket.add(getLblTicketDepartData().getText());
+        listDataTicket.add(getLblTicketArriveData().getText());
+        listDataTicket.add(getLblTicketSeatTypeData().getText());
+        listDataTicket.add(getLblTicketAmountData().getText());
         return listDataTicket;
     }
 

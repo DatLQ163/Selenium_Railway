@@ -24,11 +24,12 @@ public class BookTicketTest extends GeneralTest{
 
         String actualMsg = loginPage.displayLoginPageTitle();
         String expectedMsg = "Login Page";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg, "Login page do not display when un-logged User clicks on 'Book ticket' tab");
     }
 
     @Test
     public void TC14(){
+        Log.info("TC-14 - User can book 1 ticket at a time");
         String DEPART_DATE = String.valueOf((int) (Math.random() * 27+4));
         String DepartFrom = "Sài Gòn";
         String ArriveAt = "Nha Trang";
@@ -55,9 +56,9 @@ public class BookTicketTest extends GeneralTest{
 
         String actualMsg = bookTicketPage.getBookSuccessfullyMessage();
         String expectedMsg = "Ticket Booked Successfully!";
-        Assert.assertEquals(actualMsg, expectedMsg, "test case failed");
+        Assert.assertEquals(actualMsg, expectedMsg, "User can not book 1 ticket at a time");
         for(int i = 0;i<listDataBooking.size();i++){
-            Assert.assertEquals(listDataBooking.get(i),listDataTicket.get(i));
+            Assert.assertEquals(listDataBooking.get(i),listDataTicket.get(i),"Ticket information display incorrectly");
         }
     }
 }
