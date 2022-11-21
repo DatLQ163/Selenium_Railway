@@ -1,6 +1,7 @@
 package pageobjects;
 
 import common.Constant;
+import common.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -29,6 +30,7 @@ public class TimetablePage extends GeneralPage{
 
     // Methods
     public void clickBookTicketLink(String depart, String arrive){
+        Utilities.scrollToFindElement(getLink());
         getLnkBookTicket(depart,arrive).click();
     }
 
