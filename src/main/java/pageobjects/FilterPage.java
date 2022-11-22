@@ -54,10 +54,16 @@ public class FilterPage extends GeneralPage{
         dropStatus.selectByVisibleText(status);
     }
 
-    public List<String> getListDataFilter(){
-        List<String> listDataFilter = new ArrayList<>();
-
-        return listDataFilter;
+    public List<String> getInfoFilter(){
+        Select dropDepartStation = new Select(getDdlDepart());
+        Select dropArriveStation = new Select(getDdlArrive());
+        Select dropStatus = new Select(getDdlStatus());
+        List<String> listInfoFilter = new ArrayList<>();
+        listInfoFilter.add(dropDepartStation.getFirstSelectedOption().getText());
+        listInfoFilter.add(dropArriveStation.getFirstSelectedOption().getText());
+        listInfoFilter.add(getTextDate().getText());
+        listInfoFilter.add(dropStatus.getFirstSelectedOption().getText());
+        return listInfoFilter;
     }
 
     public void clickFilterButton(){

@@ -28,7 +28,7 @@ public class LoginTest extends GeneralTest{
         loginPage.login(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
 
         String actualMsg = loginPage.getWelcomeMessage();
-        String expectedMsg = "Welcome " + Constant.USERNAME;
+        String expectedMsg = "Welcome " + PropertiesFile.getPropValue("username");
         Assert.assertEquals(actualMsg, expectedMsg,"User can not log into Railway with valid username and password");
     }
 
@@ -43,7 +43,7 @@ public class LoginTest extends GeneralTest{
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
-        Assert.assertEquals(actualMsg, expectedMsg," blank 'Username' textbox is accepted");
+        Assert.assertEquals(actualMsg, expectedMsg,"still login successfully with blank 'Username' textbox");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class LoginTest extends GeneralTest{
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "Invalid username or password. Please try again.";
-        Assert.assertEquals(actualMsg, expectedMsg,"invalid password is accepted");
+        Assert.assertEquals(actualMsg, expectedMsg,"still login successfully with invalid password");
     }
 
     @Test
@@ -111,5 +111,19 @@ public class LoginTest extends GeneralTest{
         boolean actualChangePasswordPageResult = changePasswordPage.displayChangePasswordPageTitle();
         boolean expectedChangePasswordPageResult = true;
         Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult,"can not dot to Change password page");
+    }
+
+    @Test
+    public void TC08(){
+        Log.info("TC-08: User can't login with an account hasn't been registered");
+        Log.info("1. Navigate to QA Railway Website");
+        Log.info("2. Click on 'Login' tab");
+        homePage.gotoPage("Login");
+        Log.info("3. Login with unregistered account");
+        loginPage.login(Constant.UNREGISTERED_ACCOUNT, Constant.PASSWORD);
+
+        String actualMsg = loginPage.getLoginErrorMessage();
+        String expectedMsg = "Invalid username or password. Please try again.";
+        Assert.assertEquals(actualMsg, expectedMsg,"still login successfully with unregistered account");
     }
 }

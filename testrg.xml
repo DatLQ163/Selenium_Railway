@@ -11,6 +11,7 @@
                     <include name="TC03" />
                     <include name="TC05" />
                     <include name="TC06" />
+                    <include name="TC08" />
                 </methods>
             </class>
             <class name="testcases.railway.BookTicketTest">
