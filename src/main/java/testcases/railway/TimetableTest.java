@@ -23,7 +23,7 @@ public class TimetableTest extends GeneralTest{
     public void TC15(){
         String Depart = "Huế";
         String Arrive ="Sài Gòn";
-        Log.info("TC15-User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
+        Log.info("TC-15-User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Login with a valid account");
         homePage.gotoPage("Login");
@@ -49,7 +49,7 @@ public class TimetableTest extends GeneralTest{
     public void TC15_1(){
         // TC15 with using CSV file
         String rowNumber = "9";
-        Log.info("TC15_1 - User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
+        Log.info("TC-15_1 - User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Login with a valid account");
         homePage.gotoPage("Login");

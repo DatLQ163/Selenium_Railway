@@ -63,13 +63,13 @@ public class MyTicketPage extends GeneralPage{
         return getBtnCancelWithRow(rowNumber).getAttribute("onclick");
     }
 
-    public WebElement selectRowWillBeCanceled(String cancelId){
+    private WebElement selectRowWillBeCanceled(String cancelId){
         return getRowSelected(cancelId);
     }
 
-    public Boolean checkRowBeCanceled (WebElement element){
+    public Boolean checkRowBeCanceled (String cancelId){
             try{
-                element.isDisplayed();
+                selectRowWillBeCanceled(cancelId);
                 return false;
             }
             catch(Exception e){
