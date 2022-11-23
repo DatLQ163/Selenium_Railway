@@ -21,32 +21,6 @@ public class TimetableTest extends GeneralTest{
 
     @Test
     public void TC15(){
-        String Depart = "Huế";
-        String Arrive ="Sài Gòn";
-        Log.info("TC15-User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
-        Log.info("1. Navigate to QA Railway Website");
-        Log.info("2. Login with a valid account");
-        homePage.gotoPage("Login");
-        loginPage.login(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        Log.info("3. Click on 'Timetable' tab");
-        loginPage.gotoPage("Timetable");
-        Log.info("4. Click on 'book ticket' link of the route from 'Huế' to 'Sài Gòn'");
-        timetablePage.clickBookTicketLink(Depart,Arrive);
-
-        String actualMsg = bookTicketPage.getBookTicketPageTitle();
-        String expectedMsg = "Book ticket";
-        Assert.assertEquals(actualMsg, expectedMsg,"can not navigate to 'Book ticket' page ");
-
-        //list data trip
-        List<String> listDataTrip = timetablePage.getDataChoose(Depart,Arrive);
-        List<String> listDataBooking = bookTicketPage.getDataDisplay();
-        for(int i = 0;i<listDataTrip.size();i++){
-            Assert.assertEquals(listDataTrip.get(i),listDataBooking.get(i),"''Book ticket' page is loaded with incorrect 'Depart from' and 'Arrive at' values.");
-        }
-    }
-
-    @Test
-    public void TC15_1(){
         // TC15 with using CSV file
         String rowNumber = "9";
         Log.info("TC15_1 - User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
