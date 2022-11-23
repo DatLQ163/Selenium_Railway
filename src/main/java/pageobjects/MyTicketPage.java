@@ -68,13 +68,13 @@ public class MyTicketPage extends GeneralPage{
     }
 
     public Boolean checkRowBeCanceled (String cancelId){
-            try{
-                selectRowWillBeCanceled(cancelId);
-                return false;
-            }
-            catch(Exception e){
-                return true;
-            }
+        try{
+            selectRowWillBeCanceled(cancelId);
+            return false;
+        }
+        catch(Exception e){
+            return true;
+        }
     }
 
     public boolean displayMyTicketTitle(){
