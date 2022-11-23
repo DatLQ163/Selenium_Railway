@@ -40,6 +40,7 @@ public class TimetableTest extends GeneralTest{
         //list data trip
         List<String> listDataTrip = timetablePage.getDataChoose(ReadCSVFile.getDepartByLine(rowNumber),ReadCSVFile.getArriveByLine(rowNumber));
         List<String> listDataBooking = bookTicketPage.getDataDisplay();
+        Log.info("5. Verify that 'Book ticket' page is loaded with correct 'Depart from', 'Arrive at' ");
         for(int i = 0;i<listDataTrip.size();i++){
             Assert.assertEquals(listDataTrip.get(i),listDataBooking.get(i),"'Book ticket' page is loaded with incorrect 'Depart from' and 'Arrive at' values.");
         }

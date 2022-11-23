@@ -88,29 +88,34 @@ public class LoginTest extends GeneralTest{
         //display MyTicket tab
         boolean actualMyTicketTabDisplay = homePage.displayTabMenu("My ticket");
         boolean expectedMyTicketTabDisplay = true;
+        Log.info("Verify that MyTicket tab display");
         Assert.assertEquals(actualMyTicketTabDisplay, expectedMyTicketTabDisplay, "MyTicket tab do not display");
 
         //display ChangePassword tab
         boolean actualChangePasswordTabDisplay = homePage.displayTabMenu("Change password");
         boolean expectedChangePasswordTabDisplay = true;
+        Log.info("Verify that ChangPassword tab display");
         Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay,"ChangPassword tab do not display");
 
         //display Logout tab
         boolean actualLogoutTabDisplay = homePage.displayTabMenu("Log out");
         boolean expectedLogoutTabDisplay = true;
+        Log.info("Verify that Logout tab display");
         Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay,"Logout tab do not display");
 
         //go to MyTicket page
         loginPage.gotoPage("My ticket");
         boolean actualMyTicketPageResult = myTicketPage.displayMyTicketTitle();
         boolean expectedMyTicketPageResult = true;
+        Log.info("Verify that user can go to MyTicket page directly");
         Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult,"can not go to MyTicket page");
 
         //go to ChangePassword page
         loginPage.gotoPage("Change password");
         boolean actualChangePasswordPageResult = changePasswordPage.displayChangePasswordPageTitle();
         boolean expectedChangePasswordPageResult = true;
-        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult,"can not dot to Change password page");
+        Log.info("Verify that user can go to Change password page directly");
+        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult,"can not go to Change password page");
     }
 
     @Test

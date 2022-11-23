@@ -56,16 +56,19 @@ public class RegisterTest extends GeneralTest{
         //message above the form
         String actualErrMsg = registerPage.displayErrorMessage();
         String expectedErrMsg = "There're errors in the form. Please correct the errors and try again.";
+        Log.info("Verify error message display above the form");
         Assert.assertEquals(actualErrMsg,expectedErrMsg,"error message display above the form different with expected message");
 
         //message next to password field
         String actualPasswordMsg = registerPage.displayValidationMessage("password");
         String expectedPasswordMsg = "Invalid password length";
+        Log.info("Verify error message display next to password field");
         Assert.assertEquals(actualPasswordMsg,expectedPasswordMsg,"error message display next to password field different with expected message");
 
         //message next to PID field
         String actualPIDMsg = registerPage.displayValidationMessage("pid");
         String expectedPIDMsg = "Invalid ID length";
+        Log.info("Verify error message display next to PID field");
         Assert.assertEquals(actualPIDMsg,expectedPIDMsg,"error message display next to PID field different with expected message");
     }
 }

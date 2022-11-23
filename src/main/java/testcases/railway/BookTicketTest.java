@@ -57,6 +57,7 @@ public class BookTicketTest extends GeneralTest{
         String actualMsg = bookTicketPage.getBookSuccessfullyMessage();
         String expectedMsg = "Ticket Booked Successfully!";
         Assert.assertEquals(actualMsg, expectedMsg, "User can not book 1 ticket at a time");
+        Log.info("Verify that Ticket information display correctly");
         for(int i = 0;i<listDataBooking.size();i++){
             Assert.assertEquals(listDataBooking.get(i),listDataTicket.get(i),"Ticket information display incorrectly");
         }

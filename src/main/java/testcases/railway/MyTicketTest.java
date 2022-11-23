@@ -40,6 +40,7 @@ public class MyTicketTest extends GeneralTest{
         myTicketPage.clickOkAlert();
 
         //check display row be canceled
+        Log.info("Verify that a ticket canceled is disappear");
         Boolean actualResult = myTicketPage.checkRowBeCanceled(cancelID);
         Assert.assertTrue(actualResult, "User can not cancel a ticket");
     }
