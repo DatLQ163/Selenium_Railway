@@ -28,8 +28,8 @@ public class LoginTest extends GeneralTest{
         loginPage.login(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
 
         String actualMsg = loginPage.getWelcomeMessage();
-        String expectedMsg = "Welcome " + Constant.USERNAME;
-        Assert.assertEquals(actualMsg, expectedMsg);
+        String expectedMsg = "Welcome " + PropertiesFile.getPropValue("username");
+        Assert.assertEquals(actualMsg, expectedMsg,"User can not log into Railway with valid username and password");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class LoginTest extends GeneralTest{
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg,"still login successfully with blank 'Username' textbox");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class LoginTest extends GeneralTest{
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "Invalid username or password. Please try again.";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg,"still login successfully with invalid password");
     }
 
     @Test
@@ -73,7 +73,7 @@ public class LoginTest extends GeneralTest{
         }
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
-        Assert.assertEquals(actualMsg, expectedMsg);
+        Assert.assertEquals(actualMsg, expectedMsg,"System do not show message when user enters wrong password several times" );
     }
 
     @Test
@@ -88,28 +88,42 @@ public class LoginTest extends GeneralTest{
         //display MyTicket tab
         boolean actualMyTicketTabDisplay = homePage.displayTabMenu("My ticket");
         boolean expectedMyTicketTabDisplay = true;
-        Assert.assertEquals(actualMyTicketTabDisplay, expectedMyTicketTabDisplay, "test case failed");
+        Assert.assertEquals(actualMyTicketTabDisplay, expectedMyTicketTabDisplay, "MyTicket tab do not display");
 
         //display ChangePassword tab
         boolean actualChangePasswordTabDisplay = homePage.displayTabMenu("Change password");
         boolean expectedChangePasswordTabDisplay = true;
-        Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay);
+        Assert.assertEquals(actualChangePasswordTabDisplay, expectedChangePasswordTabDisplay,"ChangPassword tab do not display");
 
         //display Logout tab
         boolean actualLogoutTabDisplay = homePage.displayTabMenu("Log out");
         boolean expectedLogoutTabDisplay = true;
-        Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay);
+        Assert.assertEquals(actualLogoutTabDisplay, expectedLogoutTabDisplay,"Logout tab do not display");
 
         //go to MyTicket page
         loginPage.gotoPage("My ticket");
         boolean actualMyTicketPageResult = myTicketPage.displayMyTicketTitle();
         boolean expectedMyTicketPageResult = true;
-        Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult);
+        Assert.assertEquals(expectedMyTicketPageResult,actualMyTicketPageResult,"can not go to MyTicket page");
 
         //go to ChangePassword page
         loginPage.gotoPage("Change password");
         boolean actualChangePasswordPageResult = changePasswordPage.displayChangePasswordPageTitle();
         boolean expectedChangePasswordPageResult = true;
-        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult);
+        Assert.assertEquals(actualChangePasswordPageResult, expectedChangePasswordPageResult,"can not dot to Change password page");
+    }
+
+    @Test
+    public void TC08(){
+        Log.info("TC-08: User can't login with an account hasn't been registered");
+        Log.info("1. Navigate to QA Railway Website");
+        Log.info("2. Click on 'Login' tab");
+        homePage.gotoPage("Login");
+        Log.info("3. Login with unregistered account");
+        loginPage.login(Constant.UNREGISTERED_ACCOUNT, Constant.PASSWORD);
+
+        String actualMsg = loginPage.getLoginErrorMessage();
+        String expectedMsg = "Invalid username or password. Please try again.";
+        Assert.assertEquals(actualMsg, expectedMsg,"still login successfully with unregistered account");
     }
 }

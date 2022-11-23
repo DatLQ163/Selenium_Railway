@@ -21,7 +21,7 @@ public class DriverManager {
                 Constant.WEBDRIVER = new EdgeDriver();
                 break;
             default:
-                System.out.println("no browser type be found");
+                throw new NullPointerException("no browser type is found");
         }
         Constant.WEBDRIVER.navigate().to(Constant.RAILWAY_URL);
     }

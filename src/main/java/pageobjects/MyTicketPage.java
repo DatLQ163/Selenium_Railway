@@ -63,18 +63,18 @@ public class MyTicketPage extends GeneralPage{
         return getBtnCancelWithRow(rowNumber).getAttribute("onclick");
     }
 
-    public WebElement selectRowWillBeCanceled(String cancelId){
+    private WebElement selectRowWillBeCanceled(String cancelId){
         return getRowSelected(cancelId);
     }
 
-    public Boolean checkRowBeCanceled (WebElement element){
-            try{
-                element.isDisplayed();
-                return false;
-            }
-            catch(Exception e){
-                return true;
-            }
+    public Boolean checkRowBeCanceled (String cancelId){
+        try{
+            selectRowWillBeCanceled(cancelId);
+            return false;
+        }
+        catch(Exception e){
+            return true;
+        }
     }
 
     public boolean displayMyTicketTitle(){

@@ -27,13 +27,12 @@ public class MyTicketTest extends GeneralTest{
         loginPage.login(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
         Log.info("3. Book a ticket");
         loginPage.gotoPage("Book ticket");
-        bookTicketPage.bookTicket(DEPART_DATE,"Sài Gòn","Nha Trang",  "Soft bed with air conditioner", "1" );
+        bookTicketPage.bookTicket(DEPART_DATE,"Sài Gòn","Nha Trang","Soft bed with air conditioner", "1" );
         Log.info("4. Click on 'My ticket' tab");
         bookTicketPage.gotoPage("My ticket");
 
-        //determined row will be canceled
+        //determined cancel button id
         String cancelID = myTicketPage.getCancelId(rowNumber);
-        WebElement rowSelected = myTicketPage.selectRowWillBeCanceled(cancelID);
 
         Log.info("5. Click on 'Cancel' button of ticket which user want to cancel.");
         myTicketPage.cancelTicket(rowNumber);
@@ -41,8 +40,7 @@ public class MyTicketTest extends GeneralTest{
         myTicketPage.clickOkAlert();
 
         //check display row be canceled
-        Boolean actualResult = myTicketPage.checkRowBeCanceled(rowSelected);
-        Boolean expectedResult = true;
-        Assert.assertEquals(actualResult, expectedResult);
+        Boolean actualResult = myTicketPage.checkRowBeCanceled(cancelID);
+        Assert.assertTrue(actualResult, "User can not cancel a ticket");
     }
 }
