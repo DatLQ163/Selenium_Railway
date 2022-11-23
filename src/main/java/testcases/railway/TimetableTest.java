@@ -3,7 +3,6 @@ package testcases.railway;
 import common.Log;
 import common.PropertiesFile;
 import common.ReadCSVFile;
-import common.Utilities;
 import pageobjects.BookTicketPage;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;

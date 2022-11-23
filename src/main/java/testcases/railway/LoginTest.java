@@ -125,7 +125,7 @@ public class LoginTest extends GeneralTest{
         Log.info("2. Click on 'Login' tab");
         homePage.gotoPage("Login");
         Log.info("3. Login with unregistered account");
-        loginPage.login(Constant.UNREGISTERED_ACCOUNT, Constant.PASSWORD);
+        loginPage.login(Constant.UNREGISTERED_ACCOUNT, Constant.PASSWORD_TEST);
 
         String actualMsg = loginPage.getLoginErrorMessage();
         String expectedMsg = "Invalid username or password. Please try again.";

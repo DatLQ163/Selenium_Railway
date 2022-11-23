@@ -16,7 +16,7 @@ public class ChangePasswordTest extends GeneralTest{
 
     @Test
     public void TC09(){
-        String testNewPass = Constant.PASSWORD + (int)(Math.random() * 10);
+        String testNewPass = Constant.PASSWORD_TEST + (int)(Math.random() * 10);
         Log.info("TC-09 - User can change password");
         Log.info("1. Navigate to QA Railway Website");
         Log.info("2. Login with valid account");
