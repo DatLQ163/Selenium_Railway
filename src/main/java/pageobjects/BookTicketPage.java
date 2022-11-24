@@ -10,11 +10,11 @@ import java.util.List;
 
 public class BookTicketPage extends GeneralPage{
     // Locators
-    private final By ddlDepartDate = By.xpath("//select[@name='Date']");
-    private final By ddlDepartFrom = By.xpath("//select[@name='DepartStation']");
-    private final By ddlArriveAt = By.xpath("//select[@name='ArriveStation']");
-    private final By ddlSeatType = By.xpath("//select[@name='SeatType']");
-    private final By ddlTicketAmount = By.xpath("//select[@name='TicketAmount']");
+    private final By ddlDepartDate = By.name("Date");
+    private final By ddlDepartFrom = By.name("DepartStation");
+    private final By ddlArriveAt = By.name("ArriveStation");
+    private final By ddlSeatType = By.name("SeatType");
+    private final By ddlTicketAmount = By.name("TicketAmount");
     private final By btnBookTicket = By.xpath("//input[@type='submit']");
     private final By lblBookSuccessfullyMessage = By.xpath("//div/h1");
     private final By lblTicketDepartData = By.xpath("//table//td[count(//th[.='Depart Station']/preceding-sibling::th)+1]");

@@ -9,10 +9,10 @@ public class MyTicketPage extends GeneralPage{
     // Locators
     private String btnCancelWithRow = "//td[.='%s']/..//input[@value='Delete' or @value='Cancel']";
     private String rowSelected = "//input[@onclick='%s']/../..";
-    private final By ddlDepart = By.xpath("//div[@class='Filter']//select[@name='FilterDpStation']");
-    private final By ddlArrive = By.xpath("//div[@class='Filter']//select[@name='FilterArStation']");
-    private final By textDate = By.xpath("//div[@class='Filter']//input[@name='FilterDpDate']");
-    private final By ddlStatus = By.xpath("//div[@class='Filter']//select[@name='FilterStatus']");
+    private final By ddlDepart = By.name("FilterDpStation");
+    private final By ddlArrive = By.name("FilterArStation");
+    private final By textDate = By.name("FilterDpDate");
+    private final By ddlStatus = By.name("FilterStatus");
     private final By btnFilter = By.xpath("//div[@class='Filter']//input[@type='submit']");
     private final By titleMyTicketPage = By.xpath("//h1[.='Manage Tickets']");
 
