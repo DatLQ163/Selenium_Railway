@@ -2,10 +2,13 @@ package testcases.railway;
 
 import common.Constant;
 import common.Log;
+import org.json.simple.JSONArray;
 import pageobjects.HomePage;
 import pageobjects.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static common.DriverJsonFile.*;
 
 public class RegisterTest extends GeneralTest{
     HomePage homePage = new HomePage();
@@ -21,6 +24,26 @@ public class RegisterTest extends GeneralTest{
         homePage.gotoPage("Register");
         Log.info("3. Enter valid information into all fields then click on 'Register' button");
         registerPage.register(REGISTER_USERNAME, Constant.PASSWORD, testConfirmPassword, Constant.PASSPORT_NUMBER);
+
+        String actualMsg = registerPage.getRegisterSuccessfullyMessage();
+        String expectedMsg = "You're here";
+        Assert.assertEquals(actualMsg, expectedMsg,"User cannot create new account");
+    }
+
+    @Test
+    public void TC07_1(){
+        String REGISTER_USERNAME = "Dat" + (int) (Math.random() * 1000) + "@gmail.com";
+        String testConfirmPassword = Constant.PASSWORD;
+//        JSONArray accountRegisteredList = readJsonFileRegister();
+        JSONArray accountUnregisteredList = readJsonFileUnregister();
+        Log.info("TC-07 - User can create new account");
+        Log.info("1. Navigate to QA Railway Website");
+        Log.info("2. Click on 'Register' tab");
+        homePage.gotoPage("Register");
+        Log.info("3. Enter valid information into all fields then click on 'Register' button");
+        registerPage.register(REGISTER_USERNAME, Constant.PASSWORD, testConfirmPassword, Constant.PASSPORT_NUMBER);
+
+        writeJsonFile(REGISTER_USERNAME, Constant.PASSWORD, accountUnregisteredList,"unregistered");
 
         String actualMsg = registerPage.getRegisterSuccessfullyMessage();
         String expectedMsg = "You're here";
