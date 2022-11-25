@@ -19,6 +19,41 @@ public class RegisterPage extends GeneralPage{
     }
 
     // Elements
+    private WebElement getTxtEmail(){
+        return Constant.WEBDRIVER.findElement(txtEmail);
+    }
+
+    private WebElement getTxtPassword(){
+        return Constant.WEBDRIVER.findElement(txtPassword);
+    }
+
+    private WebElement getTxtConfirmPassword(){
+        return Constant.WEBDRIVER.findElement(txtConfirmPassword);
+    }
+
+    private WebElement getTxtPassport(){
+        return Constant.WEBDRIVER.findElement(txtPassport);
+    }
+
+    private WebElement getBtnRegister(){
+        return Constant.WEBDRIVER.findElement(btnRegister);
+    }
 
     //Methods
+    public void fillDataRegister(String email, String password, String confirmPassword , String passport){
+        Utilities.scrollToFindElement(getLink());
+        this.getTxtEmail().sendKeys(email);
+        this.getTxtPassword().sendKeys(password);
+        this.getTxtConfirmPassword().sendKeys(confirmPassword);
+        this.getTxtPassport().sendKeys(passport);
+    }
+
+    public void clickRegister(){
+        this.getBtnRegister().click();
+    }
+
+    public void register(String email, String password, String confirmPassword, String passport){
+        fillDataRegister( email, password, confirmPassword, passport);
+        clickRegister();
+    }
 }

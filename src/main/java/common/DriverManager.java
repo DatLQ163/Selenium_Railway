@@ -1,8 +1,14 @@
 package common;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class DriverManager {
     public static void chooseBrowser(String browser) {
@@ -29,4 +35,14 @@ public class DriverManager {
     public static void maximizeBrowser(){
         Constant.WEBDRIVER.manage().window().maximize();
     }
+
+    public static void waitForClick(WebElement element){
+        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER,3); //20 seconds
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        Constant.WEBDRIVER.findElement((By) element).click();
+    }
+
+//    public void implicitWait() {
+//        Constant.WEBDRIVER.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+//    }
 }

@@ -1,6 +1,7 @@
 package pageobjects;
 
 import common.Constant;
+import common.DriverManager;
 import common.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,58 @@ public class BookTicketPage extends GeneralPage {
     private final By lblBookTicketPageTitle = By.xpath("//h1[.='Book ticket']");
 
     // Elements
+    private WebElement getDdlDepartDate() {
+        return Constant.WEBDRIVER.findElement(ddlDepartDate);
+    }
+
+    private WebElement getDdlDepartFrom() {
+        return Constant.WEBDRIVER.findElement(ddlDepartFrom);
+    }
+
+    private WebElement getDdlArriveAt() {
+        return Constant.WEBDRIVER.findElement(ddlArriveAt);
+    }
+
+    private WebElement getDdlSeatType() {
+        return Constant.WEBDRIVER.findElement(ddlSeatType);
+    }
+
+    private WebElement getDdlTicketAmount() {
+        return Constant.WEBDRIVER.findElement(ddlTicketAmount);
+    }
+
+    private WebElement getBtnBookTicket() {
+        return Constant.WEBDRIVER.findElement(btnBookTicket);
+    }
 
     // Methods
+    public void fillDataBookTicket(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount) {
+        Select dropDepartDate = new Select(getDdlDepartDate());
+        Select dropDepartFrom = new Select(getDdlDepartFrom());
+        Select dropArriveAt = new Select(getDdlArriveAt());
+        Select dropSeatType = new Select(getDdlSeatType());
+        Select dropTicketAmount = new Select(getDdlTicketAmount());
+        Utilities.scrollToFindElement(getLink());
+        dropDepartDate.selectByValue(departDate);
+        dropDepartFrom.selectByVisibleText(departFrom);
+        dropArriveAt.selectByVisibleText(arriveAt);
+        dropSeatType.selectByVisibleText(seatType);
+        dropTicketAmount.selectByVisibleText(ticketAmount);
+    }
+
+//    public void fillDataBookTicket(String departFrom) {
+//        Select dropDepartFrom = new Select(getDdlDepartFrom());
+//        Utilities.scrollToFindElement(getLink());
+//        dropDepartFrom.selectByValue(departFrom);
+//    }
+
+    public void clickBookTicket(){
+        getBtnBookTicket().click();
+    }
+
+    public void bookTicket(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount){
+        fillDataBookTicket(departDate,departFrom,arriveAt,seatType,ticketAmount );
+        clickBookTicket();
+    }
+
 }
