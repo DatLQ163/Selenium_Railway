@@ -12,28 +12,6 @@ public class GeneralPage {
     private final By lblWelcomeMessage = By.xpath("//div[@class ='account']//strong");
 
     //Elements
-    protected static WebElement getLink() {
-        return Constant.WEBDRIVER.findElement(link);
-    }
-
-    private WebElement getTabMenu(String tabMenu){
-        return  Constant.WEBDRIVER.findElement(By.xpath(String.format(tabName,tabMenu)));
-    }
-
-    private WebElement getLblWelcomeMessage(){
-        return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
-    }
 
     //Methods
-    public void gotoPage(String tabName){
-        getTabMenu(tabName).click();
-    }
-
-    public String getWelcomeMessage(){
-        return getLblWelcomeMessage().getText();
-    }
-
-    public boolean displayTabMenu(String tabMenu){
-        return getTabMenu(tabMenu).isDisplayed();
-    }
 }

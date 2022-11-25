@@ -16,32 +16,6 @@ public class TimetablePage extends GeneralPage{
     String lnkBookTicket = "//td[count(//th[.='Depart Station'])+1][.='%s']/../td[count(//th[.='Arrive Station'])+2][.='%s']/..//a[.='book ticket']";
 
     // Elements
-    private WebElement getRowTicketInfo(){
-        return Constant.WEBDRIVER.findElement(rowTicketInfo);
-    }
-
-    private WebElement getLnkCheckPrice(String depart, String arrive){
-        return Constant.WEBDRIVER.findElement(By.xpath(String.format(lnkCheckPrice,depart,arrive)));
-    }
-
-    private WebElement getLnkBookTicket(String depart, String arrive){
-        return Constant.WEBDRIVER.findElement(By.xpath(String.format(lnkBookTicket,depart,arrive)));
-    }
 
     // Methods
-    public void clickBookTicketLink(String depart, String arrive){
-        Utilities.scrollToFindElement(getLink());
-        getLnkBookTicket(depart,arrive).click();
-    }
-
-    public void clickCheckPriceLink(String depart, String arrive){
-        getLnkCheckPrice(depart,arrive).click();
-    }
-
-    public List<String> getDataChoose(String depart, String arrive){
-        List<String> listDataChoose = new ArrayList<>();
-        listDataChoose.add(depart);
-        listDataChoose.add(arrive);
-        return listDataChoose;
-    }
 }

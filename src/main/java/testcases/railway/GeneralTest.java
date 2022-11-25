@@ -18,6 +18,6 @@ public class GeneralTest {
     @AfterMethod
     public void afterMethod(){
         Log.info("Post-condition");
-        Constant.WEBDRIVER.quit();
+//        Constant.WEBDRIVER.quit();
     }
 }

@@ -17,6 +17,6 @@ public class Utilities {
 
     public static void scrollByJavaScript(){
         JavascriptExecutor js = (JavascriptExecutor)Constant.WEBDRIVER;
-        js.executeScript("scrollBy(0, 4500)");
+        js.executeScript("scrollBy(0, 400)");
     }
 }
